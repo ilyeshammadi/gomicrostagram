@@ -1,7 +1,9 @@
 package services
 
 import (
+	"github.com/Ilyes-Hammadi/gomicrostagram/posts/actions"
 	pbPosts "github.com/Ilyes-Hammadi/gomicrostagram/posts/pb/posts"
+	"github.com/Ilyes-Hammadi/gomicrostagram/posts/utils"
 	"golang.org/x/net/context"
 )
 
@@ -10,25 +12,28 @@ type PostsServer struct{}
 
 // GetAllPosts service
 func (p *PostsServer) GetAllPosts(ctx context.Context, r *pbPosts.GetAllPostsRequest) (*pbPosts.GetAllPostsResponse, error) {
-	return &pbPosts.GetAllPostsResponse{nil}, nil
+	posts := utils.ConvertPosts(actions.GetAllPosts())
+	return &pbPosts.GetAllPostsResponse{Posts: posts}, nil
 }
 
 // GetPost service
 func (p *PostsServer) GetPost(ctx context.Context, r *pbPosts.GetPostRequest) (*pbPosts.GetPostResponse, error) {
-	return &pbPosts.GetPostResponse{nil}, nil
+	postID := r.GetId()
+	post := utils.ConvertPost(actions.GetPost(postID))
+	return &pbPosts.GetPostResponse{Post: post}, nil
 }
 
 // CreatePost service
 func (p *PostsServer) CreatePost(ctx context.Context, r *pbPosts.CreatePostRequest) (*pbPosts.CreatePostResponse, error) {
-	return &pbPosts.CreatePostResponse{}, nil
+	return &pbPosts.CreatePostResponse{Ok: true}, nil
 }
 
 // UpdatePost service
 func (p *PostsServer) UpdatePost(ctx context.Context, r *pbPosts.UpdatePostRequest) (*pbPosts.UpdatePostResponse, error) {
-	return &pbPosts.UpdatePostResponse{nil}, nil
+	return &pbPosts.UpdatePostResponse{Post: nil}, nil
 }
 
 // DeletePost service
 func (p *PostsServer) DeletePost(ctx context.Context, r *pbPosts.DeletePostRequest) (*pbPosts.DeletePostResponse, error) {
-	return &pbPosts.DeletePostResponse{}, nil
+	return &pbPosts.DeletePostResponse{Ok: true}, nil
 }
