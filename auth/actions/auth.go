@@ -12,7 +12,17 @@ func Login(username, password string) (token string) {
 }
 
 // Register a new user
-func Register(username, email, password string) (ok bool) {
+func Register(username, email, password string) bool {
+	return true
+}
+
+// Signout a user
+func Signout(token string) bool {
+	return true
+}
+
+// VerifyToken and return a boolean, if true token valid, otherwise false
+func VerifyToken(token string) bool {
 	return true
 }
 

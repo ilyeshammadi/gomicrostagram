@@ -42,7 +42,14 @@ func (s *AuthServer) GetUser(ctx context.Context, r *pb.GetUserRequest) (*pb.Get
 	return &pb.GetUserResponse{User: userConverted}, nil
 }
 
-// Signup service
+// Signout service
 func (s *AuthServer) Signout(ctx context.Context, r *pb.SignoutRequest) (*pb.SignoutResponse, error) {
 	return &pb.SignoutResponse{}, nil
+}
+
+// VerifyToken service
+func (s *AuthServer) VerifyToken(ctx context.Context, r *pb.VerifyTokenRequest) (*pb.VerifyTokenResponse, error) {
+	token := r.GetToken()
+	ok := actions.VerifyToken(token)
+	return &pb.VerifyTokenResponse{Ok: ok}, nil
 }

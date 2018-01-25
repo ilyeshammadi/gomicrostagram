@@ -33,6 +33,14 @@ message SignoutResponse {
     bool ok = 1;
 }
 
+message VerifyTokenRequest {
+    string token = 1;
+}
+
+message VerifyTokenResponse {
+    bool ok = 1;
+}
+
 message GetAllUsersRequest {}
 
 message GetAllUsersResponse {
@@ -51,6 +59,7 @@ service Auth {
     rpc Login(LoginRequest) returns (LoginResponse);
     rpc Register(RegisterRequest) returns (RegisterResponse);
     rpc Signout(SignoutRequest) returns (SignoutResponse);
+    rpc VerifyToken (VerifyTokenRequest) returns (VerifyTokenResponse);
     rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
     rpc GetUser(GetUserRequest) returns (GetUserResponse);
 }
