@@ -44,7 +44,8 @@ func (s *AuthServer) GetUser(ctx context.Context, r *pb.GetUserRequest) (*pb.Get
 
 // Signout service
 func (s *AuthServer) Signout(ctx context.Context, r *pb.SignoutRequest) (*pb.SignoutResponse, error) {
-	return &pb.SignoutResponse{}, nil
+	ok := actions.Signout(r.GetToken())
+	return &pb.SignoutResponse{Ok: ok}, nil
 }
 
 // VerifyToken service
