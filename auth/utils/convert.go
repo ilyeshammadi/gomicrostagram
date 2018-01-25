@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"github.com/Ilyes-Hammadi/gostagram/auth/models"
-	"github.com/Ilyes-Hammadi/gostagram/auth/pb/auth"
+	"github.com/Ilyes-Hammadi/gomicrostagram/auth/models"
+	"github.com/Ilyes-Hammadi/gomicrostagram/auth/pb/auth"
 )
 
 // ConvertUser models.User to auth.User

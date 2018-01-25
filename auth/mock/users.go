@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/Ilyes-Hammadi/gostagram/auth/models"
+import "github.com/Ilyes-Hammadi/gomicrostagram/auth/models"
 
 // GenerateUsers generate random mock users
 func GenerateUsers(count uint) (users []*models.User) {

@@ -6,7 +6,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/Ilyes-Hammadi/gostagram/posts/services"
+	"github.com/Ilyes-Hammadi/gomicrostagram/posts/services"
 	"google.golang.org/grpc"
 )
 

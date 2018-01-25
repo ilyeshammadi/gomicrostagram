@@ -3,9 +3,9 @@ package services
 import (
 	"golang.org/x/net/context"
 
-	"github.com/Ilyes-Hammadi/gostagram/auth/actions"
-	pb "github.com/Ilyes-Hammadi/gostagram/auth/pb/auth"
-	"github.com/Ilyes-Hammadi/gostagram/auth/utils"
+	"github.com/Ilyes-Hammadi/gomicrostagram/auth/actions"
+	pb "github.com/Ilyes-Hammadi/gomicrostagram/auth/pb/auth"
+	"github.com/Ilyes-Hammadi/gomicrostagram/auth/utils"
 )
 
 // AuthServer

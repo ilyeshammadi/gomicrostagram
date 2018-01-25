@@ -1,8 +1,8 @@
 package actions
 
 import (
-	"github.com/Ilyes-Hammadi/gostagram/auth/mock"
-	"github.com/Ilyes-Hammadi/gostagram/auth/models"
+	"github.com/Ilyes-Hammadi/gomicrostagram/auth/mock"
+	"github.com/Ilyes-Hammadi/gomicrostagram/auth/models"
 )
 
 // Login a new user using the username and password

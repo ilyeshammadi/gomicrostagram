@@ -1,7 +1,7 @@
 package services
 
 import (
-	pbPosts "github.com/Ilyes-Hammadi/gostagram/posts/pb/posts"
+	pbPosts "github.com/Ilyes-Hammadi/gomicrostagram/posts/pb/posts"
 	"golang.org/x/net/context"
 )
 
