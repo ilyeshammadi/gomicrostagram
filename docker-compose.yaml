@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  auth:
+    build:
+      context: ./auth/
+      dockerfile: ./Dockerfile
+    environment:
+      AUTH_SERVER_ADDRESS: "0.0.0.0"
+      AUTH_SERVER_PORT: "50050"
+    ports:
+    - "0.0.0.0:50050:50050"
+  
+  posts:
+    build:
+      context: ./posts/
+      dockerfile: ./Dockerfile
+    environment:
+      POSTS_SERVER_ADDRESS: "0.0.0.0"
+      POSTS_SERVER_PORT: "50051"
+    ports:
+    - "0.0.0.0:50051:50051"
+  
