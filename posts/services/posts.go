@@ -25,7 +25,11 @@ func (p *PostsServer) GetPost(ctx context.Context, r *pbPosts.GetPostRequest) (*
 
 // CreatePost service
 func (p *PostsServer) CreatePost(ctx context.Context, r *pbPosts.CreatePostRequest) (*pbPosts.CreatePostResponse, error) {
-	return &pbPosts.CreatePostResponse{Ok: true}, nil
+	ok := actions.CreatePost(
+		r.GetUserId(),
+		r.GetTitle(),
+		r.GetContent())
+	return &pbPosts.CreatePostResponse{Ok: ok}, nil
 }
 
 // UpdatePost service
@@ -35,5 +39,6 @@ func (p *PostsServer) UpdatePost(ctx context.Context, r *pbPosts.UpdatePostReque
 
 // DeletePost service
 func (p *PostsServer) DeletePost(ctx context.Context, r *pbPosts.DeletePostRequest) (*pbPosts.DeletePostResponse, error) {
-	return &pbPosts.DeletePostResponse{Ok: true}, nil
+	ok := actions.DeletePost(r.GetId())
+	return &pbPosts.DeletePostResponse{Ok: ok}, nil
 }
