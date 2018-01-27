@@ -3,11 +3,13 @@ package main
 import (
 	"fmt"
 	"log"
-	"net"
+	"net/http"
 	"os"
 
 	"github.com/Ilyes-Hammadi/gomicrostagram/posts/services"
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/grpclog"
 )
 
 var serverAddress = os.Getenv("POSTS_SERVER_ADDRESS")
@@ -16,15 +18,25 @@ var serverPort = os.Getenv("POSTS_SERVER_PORT")
 var host = fmt.Sprintf("%s:%s", serverAddress, serverPort)
 
 func startServer() {
-	lis, err := net.Listen("tcp", host)
-	if err != nil {
-		log.Fatalf("Failed to listen: %v", err)
+	grpcServer := grpc.NewServer()
+	services.RegisterServices(grpcServer)
+
+	grpclog.SetLogger(log.New(os.Stdout, "Posts service: ", log.LstdFlags))
+	grpclog.Printf("Starting server. http port: %s", host)
+
+	wrappedServer := grpcweb.WrapServer(grpcServer)
+	handler := func(resp http.ResponseWriter, req *http.Request) {
+		wrappedServer.ServeHTTP(resp, req)
 	}
-	s := grpc.NewServer()
-	services.RegisterServices(s)
-	log.Println("gRPC server running on " + host)
-	if err := s.Serve(lis); err != nil {
-		log.Fatalf("Failed to serve: %v", err)
+
+	httpServer := http.Server{
+		Addr:    host,
+		Handler: http.HandlerFunc(handler),
+	}
+
+	httpErr := httpServer.ListenAndServe()
+	if httpErr != nil {
+		log.Fatalf("Failed to listen: %v", httpErr)
 	}
 }
 
