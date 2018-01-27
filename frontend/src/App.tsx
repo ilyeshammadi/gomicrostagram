@@ -3,14 +3,8 @@ import './App.css';
 
 const logo = require('./logo.svg');
 
-import { PostsService } from './services'
-
 
 class App extends React.Component {
-  constructor(props: object) {
-    super(props);
-    PostsService.getAllPosts()
-  }
   render() {
     return (
       <div className="App">
