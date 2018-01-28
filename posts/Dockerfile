@@ -1,6 +1,6 @@
 FROM alpine
 
-COPY ./bin app/
+COPY ./out app/
 
 WORKDIR /app
 
